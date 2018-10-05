@@ -1,4 +1,7 @@
+#!/usr/bin/env python
 
+from bs4 import BeautifulSoup
+from os import system
 
 sites = []
 all_categories =[]
