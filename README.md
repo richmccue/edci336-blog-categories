@@ -4,11 +4,11 @@
 First clone the repo and then cd into this folder
 
 ### On Machine
-Make sure you have installed Python 3 and pip3 before running the commands below,
+Make sure you have installed <a href="https://www.python.org/downloads/">Python 3</a> and pip3 before running the commands below,
 
 Then run the below command to get all the dependancies for the script:
 ```bash
-pip install --no-cache-dir -r requirements.txt
+pip3 install --no-cache-dir -r requirements.txt
 ```
 
 After that runs, you can run the script with:
