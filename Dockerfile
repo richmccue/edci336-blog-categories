@@ -1,4 +1,4 @@
-FROM python:3.6-alpine
+FROM python:3.6-alpine as build
 
 COPY requirements.txt .
 
@@ -6,4 +6,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD /bin/sh blog-report.py
+RUN python blog-report.py
+
+FROM nginx
+
+COPY --from=build output.html /usr/share/nginx/html/index.html
