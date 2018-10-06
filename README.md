@@ -17,7 +17,7 @@ docker run -p 8000:80 edci336-blog-categories
 Finally navigate to [http://localhost:8000](http://localhost:8000) and you will see the table
 
 ### On Machine
-Make sure you're running Python 3 first,
+Make sure you have installed Python 3 and pip3 before running the commands below,
 
 Then run the below command to get all the dependancies for the script:
 ```bash
