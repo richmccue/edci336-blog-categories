@@ -26,7 +26,7 @@ pip install --no-cache-dir -r requirements.txt
 
 After that runs, you can run the script with:
 ```bash
-python blog-report.py
+python3 blog-report.py
 ```
 
 Once that is completed there should be an output.html file which contains the table!
