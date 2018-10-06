@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 
+# edci336-blog-categories
+# https://github.com/richmccue/edci336-blog-categories
+# By Ryan McCue https://ryanmccue.ca
+# By Rich richmccue https://richmccue.com
+# GPL 3 License
+
 from bs4 import BeautifulSoup
 import requests
 from os import system
@@ -73,7 +79,7 @@ def main():
         for category in all_categories:
             # Add each category, or if does not exist zero, to table
             output += '<td>' + str(calc.get(category.lower(), 0)) + '</td>'
-        
+
         # End table row
         output += '</tr>'
 
