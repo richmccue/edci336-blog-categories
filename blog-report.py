@@ -4,7 +4,7 @@
 # https://github.com/richmccue/edci336-blog-categories
 # By Ryan McCue https://ryanmccue.ca
 # By Rich richmccue https://richmccue.com
-# GPL 3 License...
+# GPL 3 License
 
 from bs4 import BeautifulSoup
 import requests
