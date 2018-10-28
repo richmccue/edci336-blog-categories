@@ -31,10 +31,9 @@
       //Print all the entries
       foreach($entries as $entry){
           ?>
-          <li><a href="<?= $entry->link ?>"><?= $entry->title ?></a> (<?= parse_url($entry->link)['host'] ?>)
-          <p><?= strftime('%m/%d/%Y %I:%M %p', strtotime($entry->pubDate)) ?></p>
-          <p><?= $entry->description ?></p>
-          <p>Categories: <?= implode('</strong>, <strong>', (array)$entry->category) ?></p></li>
+          <li><a href="<?= $entry->link ?>"><?= $entry->title ?></a> URL: <?= $entry->link ?><br />
+          <?= strftime('%m/%d/%Y %I:%M %p', strtotime($entry->pubDate)) ?><br />
+          Categories: <i><?= implode('</i>, <i>', (array)$entry->category) ?></i><br /></li>
           <?php
       }
       mysqli_close($db);
