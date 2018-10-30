@@ -9,8 +9,8 @@
     <?php
       //Feed URLs
       $feeds = array(
-          "https://brechanbird.wordpress.com/feed",
-          "https://hilarygraham11.wordpress.com/feed"
+          "https://kennedyhumeniuk.wordpress.com/feed/",
+          #"https://benston789106021.wordpress.com/feed"
       );
 
       //Read each feed's items
@@ -31,7 +31,7 @@
       //Print all the entries
       foreach($entries as $entry){
           ?>
-          <li><a href="<?= $entry->link ?>"><?= $entry->title ?></a> URL: <?= $entry->link ?><br />
+          <li><a href="<?= $entry->link ?>"><?= $entry->title ?></a>
           <?= strftime('%m/%d/%Y %I:%M %p', strtotime($entry->pubDate)) ?><br />
           Categories: <i><?= implode('</i>, <i>', (array)$entry->category) ?></i><br /></li>
           <?php
