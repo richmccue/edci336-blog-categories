@@ -47,6 +47,9 @@ def main():
         # Loop through each blog post
         for item in soup.findAll('item'):
 
+            #find the blog post URL
+            blog_post_url = str(re.match(r'<link>(.*)<\/link>', str(item)))
+
             # Loop through each category in the blog post
             for category in item.findAll('category'):
                 # Use regex to parse category from XML
@@ -61,6 +64,7 @@ def main():
 
         # Create a dictonary for counting number of posts per category
         calc = {}
+        blog_post_urls = {}
 
         # Loop through list of categories
         for item in site_categories:
@@ -78,7 +82,7 @@ def main():
         # Loop through relevant categories to get wanted categories for table
         for category in all_categories:
             # Add each category, or if does not exist zero, to table
-            output += '<td>' + str(calc.get(category.lower(), 0)) + '</td>'
+            output += '<td><a href=\"' + blog_post_url + '\">' + str(calc.get(category.lower(), 0)) + '</a></td>'
 
         # End table row
         output += '</tr>'
