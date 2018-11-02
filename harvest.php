@@ -7,11 +7,24 @@
   </head>
   <body>
     <?php
-      //Feed URLs
-      $feeds = array(
-          "https://kennedyhumeniuk.wordpress.com/feed/",
+      //Put all RSS Feed URLs into array $feeds[]
+      $sql = "SELECT * FROM blogs";
+      $result = mysqli_query($db, $sql);
+
+      if (mysqli_num_rows($result) > 0) {
+          // output data of each row
+          while($row = mysqli_fetch_assoc($result)) {
+            echo 'url: ' . $row["blog_url"] . '</br>';
+            $feeds[] = $row["blog_url"] . '/feed/';
+          }
+      } else {
+          echo "0 results";
+      }
+
+      # $feeds = array(
+      #    "https://kennedyhumeniuk.wordpress.com/feed/",
           #"https://benston789106021.wordpress.com/feed"
-      );
+      #);
 
       //Read each feed's items
       $entries = array();
@@ -36,6 +49,7 @@
           Categories: <i><?= implode('</i>, <i>', (array)$entry->category) ?></i><br /></li>
           <?php
       }
+
       mysqli_close($db);
       ?>
       </ul>
