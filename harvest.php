@@ -8,8 +8,8 @@
   <body>
     <?php
       //Put all RSS Feed URLs into array $feeds[]
-      #$sql = "SELECT * FROM blogs";
-      #$result = mysqli_query($db, $sql);
+      $sql = "SELECT * FROM blogs";
+      $result = mysqli_query($db, $sql);
 
       if (mysqli_num_rows($result) > 0) {
           // output data of each row

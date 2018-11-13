@@ -20,7 +20,7 @@
       #    echo "0 results";
       #}
       $feeds = array(
-          "https://benston789106021.wordpress.com/feed",
+          "https://schoolwithsarah.wordpress.com/feed",
       );
 
       //Read each feed's items

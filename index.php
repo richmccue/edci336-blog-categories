@@ -8,7 +8,7 @@
  <h1>EDCI 336 A03 Blogs</h1>
 
 <table>
-  <tr><td>id</td><td>URL</td><td>Inquiries</td></tr>
+  <tr><td><b>id</b></td><td><b>URL</b></td><td><b>Inquiries</b></td></tr>
  <?php
  //Step2
  $query = "SELECT * FROM blogs";
