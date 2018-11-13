@@ -8,20 +8,18 @@
   <body>
     <?php
       //Put all RSS Feed URLs into array $feeds[]
-      #$sql = "SELECT * FROM blogs";
-      #$result = mysqli_query($db, $sql);
-      #if (mysqli_num_rows($result) > 0) {
-      #    // output data of each row
-      #    while($row = mysqli_fetch_assoc($result)) {
-      #      # echo 'url: ' . $row["blog_url"] . '</br>';
-      #      $feeds[] = $row["blog_url"] . '/feed/';
-      #    }
-      #} else {
-      #    echo "0 results";
-      #}
-      $feeds = array(
-          "https://alexandralyner.wordpress.com/feed",
-      );
+      $sql = "SELECT * FROM blogs";
+      $result = mysqli_query($db, $sql);
+
+      if (mysqli_num_rows($result) > 0) {
+          // output data of each row
+          while($row = mysqli_fetch_assoc($result)) {
+            # echo 'url: ' . $row["blog_url"] . '</br>';
+            $feeds[] = $row["blog_url"] . '/feed/';
+          }
+      } else {
+          echo "0 results";
+      }
 
       //Read each feed's items
       $entries = array();
