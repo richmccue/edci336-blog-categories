@@ -14,8 +14,8 @@
       if (mysqli_num_rows($result) > 0) {
           // output data of each row
           while($row = mysqli_fetch_assoc($result)) {
-            # echo 'url: ' . $row["blog_url"] . '</br>';
             $feeds[] = $row["blog_url"] . '/feed/';
+            $blog_id[] = $row["blog_id"];
           }
       } else {
           echo "0 results";
@@ -27,41 +27,33 @@
           $xml = simplexml_load_file($feed);
           $entries = array_merge($entries, $xml->xpath("//item"));
       }
-
-      //Sort feed entries by pubDate
-      # usort($entries, function ($feed1, $feed2) {
-      #    return strtotime($feed2->pubDate) - strtotime($feed1->pubDate);
-      #});
       ?>
 
       <ul><?php
       //Add all new blog posts into the posts table
       foreach($entries as $entry){
-        $sql = "SELECT * FROM posts WHERE post_url = " . $entry->link;
+        $sql = "SELECT * FROM posts WHERE post_url = '" . $entry->link . "'";
+        print $entry->link . " - looked up<br />";
         $result = mysqli_query($db, $sql);
 
         if (mysqli_num_rows($result) > 0) {
-            echo "already added";
+            echo "already added<br />";
         } else {
           #add new blog post to "posts" table
-          while($row = mysqli_fetch_assoc($result)) {
-            $feeds[] = $row["blog_url"] . '/feed/';
-          }
+          $categories = implode(', ', (array)$entry->category);
+          $pubdate = date('Y-m-d',strtotime($entry->pubDate));
+          $insert_post = "INSERT INTO posts (post_url, categories, date)
+            VALUES ('$entry->link', '$categories','$pubdate')";
+            if (mysqli_query($db, $insert_post)) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " . $insert_post . " - " . mysqli_error($db);
+            }
         }
-      }
-
-      //Print all posts on web page.
-      foreach($entries as $entry){
-          ?>
-          <li><a href="<?= $entry->link ?>"><?= $entry->title ?></a>
-          <?= strftime('%m/%d/%Y %I:%M %p', strtotime($entry->pubDate)) ?><br />
-          Categories: <i><?= implode('</i>, <i>', (array)$entry->category) ?></i><br /></li>
-          <?php
       }
 
       mysqli_close($db);
       ?>
       </ul>
-
   </body>
 </html>
