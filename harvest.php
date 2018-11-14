@@ -43,7 +43,7 @@
           $pubdate = date('Y-m-d',strtotime($entry->pubDate));
 ###############
           # lookup 'blog_id' from 'blogs' table for this blog posts
-          $blog_post_url = $entry->link;  ## Need to finish this!!!!
+          $blog_post_url = "https://" . parse_url($entry->link, PHP_URL_HOST);  ## Need to finish this!!!!
           $blogs_sql = "SELECT * FROM blogs WHERE blog_url = '" . $blog_post_url . "'";
           $blogs_result = mysqli_query($db, $blogs_sql);
           $blog_id = $blogs_result["blog_id"];
