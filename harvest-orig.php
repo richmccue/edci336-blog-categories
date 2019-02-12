@@ -1,5 +1,6 @@
 <?php
   require('db.php');
+  $blog_url = "https://" . $_GET["blog_url"];
 ?>
 <html>
   <head>
@@ -20,7 +21,8 @@
       #    echo "0 results";
       #}
       $feeds = array(
-          "https://schoolwithsarah.wordpress.com/feed",
+          #"https://alexandralyner.wordpress.com/feed",
+          "$blog_url",
       );
 
       //Read each feed's items
