@@ -1,6 +1,6 @@
 <?php
   require('db.php');
-  $blog_url = "https://" . $_GET["blog_url"];
+  $blog_url = "http://" . $_GET["blog_url"];
 ?>
 <html>
   <head>
