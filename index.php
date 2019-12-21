@@ -19,9 +19,13 @@
  $row = mysqli_fetch_array($result);
 
  while ($row = mysqli_fetch_array($result)) {
+  // Check, if not have http:// or https:// then prepend it
+  $blog_url_no_http = $row['blog_url'];
+  $blog_url_no_http = preg_replace( "#^[^:/.]*[:/]+#i", "", $blog_url_no_http );
+
   echo '<tr><td>' . $row['blog_id'] . '</td><td><a href="' .
-    $row['blog_url'] . '">' . $row['blog_url'] . '</a></td><td>' .
-    $row['comment'] .'</td></tr>';
+    'http://msystems.net/edci336/harvest-orig.php?blog_url=' . $blog_url_no_http . '/feed/">' .
+    $row['blog_url'] . '</a></td><td>' . $row['comment'] .'</td></tr>';
  }
  //Step 4
  mysqli_close($db);
