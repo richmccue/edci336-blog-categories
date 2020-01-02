@@ -1,12 +1,14 @@
 <?php
   require('db.php');
   $blog_url = "http://" . $_GET["blog_url"];
+  $section = $_GET["section"];
 ?>
 <html>
   <head>
     <title>Harvest New EDCI 336 Blog Posts</title>
   </head>
   <body>
+    <h1>EDCI 336 <? echo $section ." - " . $blog_url ?></h1>
     <?php
       //Put all RSS Feed URLs into array $feeds[]
       #$sql = "SELECT * FROM blogs";
