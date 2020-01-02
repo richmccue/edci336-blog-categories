@@ -30,15 +30,14 @@
         $sql = "SELECT * FROM posts WHERE post_url = '" . $entry->link . "'";
         $result = mysqli_query($db, $sql);
 
-
         if (mysqli_num_rows($result) > 0) {
-            echo "Already Added<br>";
+            #echo "Already Added<br>";
         } else {
           #add new blog post to "posts" table
           $categories = implode(', ', (array)$entry->category);
           $pub_date = strftime('%Y-%m-%d', strtotime($entry->pubDate));
-          $sql = "INSERT INTO posts (post_url, 	categories, date, blog_id)
-            VALUES ('$entry->link', '$categories', '$pub_date', $blog_id)";
+          $sql = "INSERT INTO posts (post_url, 	categories, date, blog_id, post_title)
+            VALUES ('$entry->link', '$categories', '$pub_date', $blog_id,'$entry->title')";
             if ($db->query($sql) === TRUE) {
               echo "New record created successfully". $sql . "<br>";
             } else {
@@ -48,13 +47,18 @@
       }
 
       //Print all posts on web page.
-      foreach($entries as $entry){
-          ?>
-          <li><a href="<?= $entry->link ?>"><?= $entry->title ?></a>
-          <?= strftime('%m/%d/%Y %I:%M %p', strtotime($entry->pubDate)) ?><br />
-          Categories: <i><?= implode('</i>, <i>', (array)$entry->category) ?></i><br /></li>
-          <?php
-      }
+
+      $sql = "SELECT * FROM posts WHERE blog_id = $blog_id";
+      $result = mysqli_query($db, $sql);
+
+      echo "<table border='1'>";
+      while($row = mysqli_fetch_array($result))
+        {
+        echo "<tr><td><a href='" . $row['post_url'] ."'>" . $row['post_title'] . "</td>";
+        echo "<td>" . $row['grade'] . "</td><td>" . $row['date'] . "</td>";
+        echo "<td>Categories:<i>" . $row['categories'] . "</i></td></tr>\n";
+        }
+      echo "</table>";
 
       mysqli_close($db);
       ?>
