@@ -1,6 +1,7 @@
 <?php
   require('db.php');
   $blog_url = "http://" . $_GET["blog_url"];
+  $blog_id = $_GET["id"];
   $section = $_GET["section"];
 ?>
 <html>
@@ -10,18 +11,6 @@
   <body>
     <h1>EDCI 336 <? echo $section ." - " . $blog_url ?></h1>
     <?php
-      //Put all RSS Feed URLs into array $feeds[]
-      #$sql = "SELECT * FROM blogs";
-      #$result = mysqli_query($db, $sql);
-      #if (mysqli_num_rows($result) > 0) {
-      #    // output data of each row
-      #    while($row = mysqli_fetch_assoc($result)) {
-      #      # echo 'url: ' . $row["blog_url"] . '</br>';
-      #      $feeds[] = $row["blog_url"] . '/feed/';
-      #    }
-      #} else {
-      #    echo "0 results";
-      #}
       $feeds = array(
           #"https://alexandralyner.wordpress.com/feed",
           "$blog_url",
@@ -33,26 +22,28 @@
           $xml = simplexml_load_file($feed);
           $entries = array_merge($entries, $xml->xpath("//item"));
       }
-
-      //Sort feed entries by pubDate
-      # usort($entries, function ($feed1, $feed2) {
-      #    return strtotime($feed2->pubDate) - strtotime($feed1->pubDate);
-      #});
       ?>
 
       <ul><?php
       //Add all new blog posts into the posts table
       foreach($entries as $entry){
-        $sql = "SELECT * FROM posts WHERE post_url = " . $entry->link;
+        $sql = "SELECT * FROM posts WHERE post_url = '" . $entry->link . "'";
         $result = mysqli_query($db, $sql);
 
+
         if (mysqli_num_rows($result) > 0) {
-            echo "already added";
+            echo "Already Added<br>";
         } else {
           #add new blog post to "posts" table
-          while($row = mysqli_fetch_assoc($result)) {
-            $feeds[] = $row["blog_url"] . '/feed/';
-          }
+          $categories = implode(', ', (array)$entry->category);
+          $pub_date = strftime('%Y-%m-%d', strtotime($entry->pubDate));
+          $sql = "INSERT INTO posts (post_url, 	categories, date, blog_id)
+            VALUES ('$entry->link', '$categories', '$pub_date', $blog_id)";
+            if ($db->query($sql) === TRUE) {
+              echo "New record created successfully". $sql . "<br>";
+            } else {
+              echo "Error: " . $sql . "<br>" . $conn->error;
+            }
         }
       }
 
