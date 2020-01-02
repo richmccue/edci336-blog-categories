@@ -5,7 +5,7 @@
  <head>
  </head>
  <body>
- <h1>EDCI 336 Sections</h1>
+ <h1>EDCI 336 Blog Tracker 4 Instructors</h1>
 
 <table>
 
