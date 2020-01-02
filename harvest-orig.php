@@ -5,7 +5,7 @@
 ?>
 <html>
   <head>
-    <title>Harvest New EDCI 336 Blog Posts</title>
+    <title>EDCI 336 <? echo $section ?> Blog Posts</title>
   </head>
   <body>
     <h1>EDCI 336 <? echo $section ." - " . $blog_url ?></h1>
