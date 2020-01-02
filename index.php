@@ -5,13 +5,13 @@
  <head>
  </head>
  <body>
- <h1>EDCI 336 A03 Blogs</h1>
+ <h1>EDCI 336 Sections</h1>
 
 <table>
-  <tr><td><b>id</b></td><td><b>URL</b></td><td><b>Inquiries</b></td></tr>
+  <tr><td><b>id</b></td><td><b>Section</b></td><td><b>Instructor</b></td></tr>
  <?php
  //Step2
- $query = "SELECT * FROM blogs";
+ $query = "SELECT * FROM sections";
  mysqli_query($db, $query) or die('Error querying database.');
 
  //Step3
@@ -19,14 +19,10 @@
  $row = mysqli_fetch_array($result);
 
  while ($row = mysqli_fetch_array($result)) {
-  // Check, if not have http:// or https:// then prepend it
-  $blog_url_no_http = $row['blog_url'];
-  $blog_url_no_http = preg_replace( "#^[^:/.]*[:/]+#i", "", $blog_url_no_http );
 
-  echo '<tr><td>' . $row['blog_id'] . '</td><td><a href="' .
-    'http://msystems.net/edci336/harvest-orig.php?id='. $row['blog_id'] . '&' .
-    'blog_url=' . $blog_url_no_http . '/feed/">' .
-    $row['blog_url'] . '</a></td><td>' . $row['comment'] .'</td></tr>';
+  echo '<tr><td>' . $row['section_id'] . '</td><td><a href="' .
+    'http://msystems.net/edci336/section.php?id='. $row['section_id'] . ">' .
+    $row['section'] . '</a></td><td>' . $row['intructor'] .'</td></tr>';
  }
  //Step 4
  mysqli_close($db);
