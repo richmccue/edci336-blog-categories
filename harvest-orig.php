@@ -9,7 +9,7 @@
     <title>EDCI 336 <? echo $section ?> Blog Posts</title>
   </head>
   <body>
-    <h1>EDCI 336 <? echo $section ." - " . $blog_url ?></h1>
+    <h1>EDCI 336 <a href="section.php?section=<? echo $section ?>"><? echo $section ?></a> - <? echo $blog_url ?></h1>
     <?php
       $feeds = array(
           #"https://alexandralyner.wordpress.com/feed",

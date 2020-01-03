@@ -6,7 +6,7 @@
  <head>
  </head>
  <body>
- <h1>EDCI 336 <? echo $section; ?></h1>
+ <h1><a href="index.php">EDCI 336</a> <? echo $section; ?></h1>
 
 <table>
   <tr><td><b>URL</b></td><td><b>Inquiries</b></td></tr>
