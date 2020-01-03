@@ -55,7 +55,9 @@
       while($row = mysqli_fetch_array($result)) {
           $grade = $row['grade'];
           echo "<tr><td><a href='" . $row['post_url'] . "'>" . $row['post_title'] . "</a></td>";
-          echo "<td>" . $grade . "</td>";
+          echo "<td><form id='save_grade' action='save_grade.php' method='post'>";
+          echo "<input type='text' name='grade' size='2' value='" . $grade . "'>";
+          echo "<a href='#' onclick='document.getElementById('save_grade').submit();'>Save</a></form></td>";
           echo "<td>" . $row['date'] . "</td>";
           echo "<td><i>" .$row['categories'] . "</i></td></tr>\n";
         }
