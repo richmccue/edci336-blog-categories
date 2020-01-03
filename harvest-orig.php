@@ -39,7 +39,7 @@
           $sql = "INSERT INTO posts (post_url, 	categories, date, blog_id, post_title)
             VALUES ('$entry->link', '$categories', '$pub_date', $blog_id,'$entry->title')";
             if ($db->query($sql) === TRUE) {
-              echo "New record created successfully". $sql . "<br>";
+              echo "New Blog Post: ". $entry->title . "<br>";
             } else {
               echo "Error: " . $sql . "<br>" . $conn->error;
             }
@@ -52,10 +52,11 @@
       $result = mysqli_query($db, $sql);
 
       echo "<table border='1'>";
+      echo "<tr><th>Blog Title</th><th>3=A 2=C 1=F</th><th>Post Date</th><th>Categories</th></tr>";
       while($row = mysqli_fetch_array($result)) {
           $grade = $row['grade'];
           echo "<tr><td><a href='" . $row['post_url'] . "' target='_blank'>" . $row['post_title'] . "</a></td>";
-          echo "<td>" . $grade . "<a href='grade.php?post_id=" . $row['post_id'] . "' target='_blank'>Grade</a></td>";
+          echo "<td>" . $grade . " <- <a href='grade.php?post_id=" . $row['post_id'] . "' target='_blank'>Grade</a></td>";
           echo "<td>" . $row['date'] . "</td>";
           echo "<td><i>" .$row['categories'] . "</i></td></tr>\n";
         }
