@@ -11,16 +11,28 @@
 <?php
  //Step2
  $query = "SELECT * FROM posts WHERE post_id =" . $post_id;
- mysqli_query($db, $query) or die('Error querying database.');
+ mysqli_query($db, $query) or die(mysqli_error());
 
  //Step3
  $result = mysqli_query($db, $query);
 
- while ($row = mysqli_fetch_assoc($result)) {
-  echo "<p><a href='" . $row['post_url'] . "' target='_blank'>" . $row['post_title'] . "</a></p>";
-  echo '<p>Grade: ' . $row['grade'] . '</p>';
- }
+echo "<div class='form'>";
 
+# If the form was submitted update posts table with the grade assigned.
+if(isset($_POST['new']) && $_POST['new']==1) {
+  $update = "UPDATE posts SET grade=" . $_REQUEST['grade'] . " WHERE post_id=" . $_REQUEST['post_id'];
+  mysqli_query($db, $update) or die(mysqli_error());
+  echo "<p style='color:#FF0000;''>Record Updated Successfully!</p>";
+} else {
+#If no grade was assigned, display current grade (if any).
+   while ($row = mysqli_fetch_assoc($result)) {
+    echo "<p><a href='" . $row['post_url'] . "' target='_blank'>" . $row['post_title'] . "</a></p>";
+    echo '<p>Grade: ' . $row['grade'] . '</p>';
+    echo '<p>Notes: ' . $row['notes'] . '</p>';
+   }
+}
+
+</form>
  //Step 4
  mysqli_close($db);
  ?>
