@@ -47,7 +47,6 @@
       }
 
       //Print all posts on web page.
-
       $sql = "SELECT * FROM posts WHERE blog_id = $blog_id";
       $result = mysqli_query($db, $sql);
 
@@ -56,7 +55,7 @@
       while($row = mysqli_fetch_array($result)) {
           $grade = $row['grade'];
           echo "<tr><td><a href='" . $row['post_url'] . "' target='_blank'>" . $row['post_title'] . "</a></td>";
-          echo "<td>" . $grade . " <- <a href='grade.php?post_id=" . $row['post_id'] . "' target='_blank'>Grade</a></td>";
+          echo "<td>" . $grade . " <- <a href='grade-post.php?post_id=" . $row['post_id'] . "' target='_blank'>Grade</a></td>";
           echo "<td>" . $row['date'] . "</td>";
           echo "<td><i>" .$row['categories'] . "</i></td></tr>\n";
         }
@@ -64,6 +63,5 @@
 
       mysqli_close($db);
       ?>
-
   </body>
 </html>
