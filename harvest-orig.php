@@ -24,7 +24,7 @@
       }
       ?>
 
-      <ul><?php
+      <?php
       //Add all new blog posts into the posts table
       foreach($entries as $entry){
         $sql = "SELECT * FROM posts WHERE post_url = '" . $entry->link . "'";
@@ -52,17 +52,17 @@
       $result = mysqli_query($db, $sql);
 
       echo "<table border='1'>";
-      while($row = mysqli_fetch_array($result))
-        {
-        echo "<tr><td><a href='" . $row['post_url'] ."'>" . $row['post_title'] . "</td>";
-        echo "<td>" . $row['grade'] . "</td><td>" . $row['date'] . "</td>";
-        echo "<td>Categories:<i>" . $row['categories'] . "</i></td></tr>\n";
+      while($row = mysqli_fetch_array($result)) {
+          $grade = $row['grade'];
+          echo "<tr><td><a href='" . $row['post_url'] . "'>" . $row['post_title'] . "</a></td>";
+          echo "<td>" . $grade . "</td>";
+          echo "<td>" . $row['date'] . "</td>";
+          echo "<td><i>" .$row['categories'] . "</i></td></tr>\n";
         }
       echo "</table>";
 
       mysqli_close($db);
       ?>
-      </ul>
 
   </body>
 </html>
