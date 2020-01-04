@@ -2,7 +2,7 @@
   require('db.php');
   $blog_url = "http://" . $_GET["blog_url"];
   $blog_id = $_GET["id"];
-  $section = $_GET["section"];
+  $section = $_COOKIE["section"];
 ?>
 <html>
   <head>
@@ -55,7 +55,7 @@
       while($row = mysqli_fetch_array($result)) {
           $grade = $row['grade'];
           echo "<tr><td><a href='" . $row['post_url'] . "' target='_blank'>" . $row['post_title'] . "</a></td>";
-          echo "<td><b>" . $grade . "</b> <- <a href='grade-post.php?post_id=" . $row['post_id'] . "&blog_id=" . $row['blog_id'] ."&section=" . $section . "&blog_url=" . $_GET['blog_url'] . "'>Grade</a></td>";
+          echo "<td><b>" . $grade . "</b> <- <a href='grade-post.php?post_id=" . $row['post_id'] . "&blog_id=" . $row['blog_id'] . "&blog_url=" . $_GET['blog_url'] . "'>Grade</a></td>";
           echo "<td>" . $row['date'] . "</td>";
           echo "<td><i>" .$row['categories'] . "</i></td></tr>\n";
         }

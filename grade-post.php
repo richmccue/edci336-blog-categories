@@ -3,7 +3,7 @@
   $post_id = $_GET["post_id"];
   $blog_id = $_GET["blog_id"];
   $blog_url = $_GET["blog_url"];
-  $section = $_GET["section"];
+  $section = $_COOKIE["section"];
 ?>
 <html>
  <head>
