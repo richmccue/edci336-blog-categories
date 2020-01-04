@@ -1,8 +1,22 @@
 <?php
   require('db.php');
-  $blog_url = "http://" . $_GET["blog_url"];
-  $blog_id = $_GET["id"];
+  #$blog_url = "http://" . $_GET["blog_url"];
+  #$blog_id = $_GET["id"];
   $section = $_COOKIE["section"];
+
+  if(isset($_GET["blog_url"])){
+    $blog_url = "http://" . $_GET["blog_url"];
+    setcookie("blog_url",$blog_url);
+  } else {
+    $blog_url = $_COOKIE["blog_url"];
+  }
+
+  if(isset($_GET["id"])){
+    $blog_id = $_GET["id"];
+    setcookie("blog_id",$blog_id);
+  } else {
+    $blog_id = $_COOKIE["blog_id"];
+  }
 ?>
 <html>
   <head>
@@ -55,7 +69,8 @@
       while($row = mysqli_fetch_array($result)) {
           $grade = $row['grade'];
           echo "<tr><td><a href='" . $row['post_url'] . "' target='_blank'>" . $row['post_title'] . "</a></td>";
-          echo "<td><b>" . $grade . "</b> <- <a href='grade-post.php?post_id=" . $row['post_id'] . "&blog_id=" . $row['blog_id'] . "&blog_url=" . $_GET['blog_url'] . "'>Grade</a></td>";
+          echo "<td><b>" . $grade . "</b> <- <a href='grade-post.php?post_id=" . $row['post_id']
+            . "'>Grade</a></td>";
           echo "<td>" . $row['date'] . "</td>";
           echo "<td><i>" .$row['categories'] . "</i></td></tr>\n";
         }

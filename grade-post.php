@@ -1,9 +1,16 @@
 <?php
   require('db.php');
-  $post_id = $_GET["post_id"];
-  $blog_id = $_GET["blog_id"];
-  $blog_url = $_GET["blog_url"];
+  #$post_id = $_GET["post_id"];
+  $blog_id = $_COOKIE["blog_id"];
+  $blog_url = $_COOKIE["blog_url"];
   $section = $_COOKIE["section"];
+
+  if(isset($_GET["post_id"])){
+    $post_id = $_GET["post_id"];
+    setcookie("post_id",$post_id);
+  } else {
+    $post_id = $_COOKIE["post_id"];
+  }
 ?>
 <html>
  <head>
@@ -24,8 +31,7 @@ if(isset($_POST['new']) && $_POST['new']==1) {
     "' WHERE post_id=" . $_REQUEST['post_id'];
   mysqli_query($db, $update) or die(mysqli_error());
   echo "<p style='color:#FF0000;''>Record Updated Successfully!</p>";
-  echo "<a href='harvest-orig.php?id=" . $blog_id . "&section=" . $section
-    ."&blog_url=" . $blog_url . "'>Return to student's blog posts</a>";
+  echo "<a href='harvest-orig.php?id=" . $blog_id . "'>Return to student's blog posts</a>";
 } else {
 #If no grade was assigned, display current grade (if any).
   echo "<form name='form' method='post' action=''>";
