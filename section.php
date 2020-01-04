@@ -1,6 +1,24 @@
 <?php
   require('db.php');
-  $section = $_GET["section"];
+
+  if(isset($_GET["section"])){
+    $section = $_GET["section"];
+    setcookie("section",$section);
+    echo "Cookie set to: " . $_COOKIE["section"];
+  } else {
+    $section = $_COOKIE["section"];
+    echo "Cookie value: " . $_COOKIE["section"];
+    #$section = "2018-A03";
+  }
+#  if(isset($_GET["section"])) {
+#    $section = $_GET["section"];
+#    setcookie("section",$section);
+#    echo "Cookie set to: " . $_COOKIE["section"];
+#  } else {
+#    $section = $_COOKIE["section"];
+#    echo "Cookie value is: " . $_COOKIE["section"];
+#  }
+
 ?>
 <html>
  <head>
