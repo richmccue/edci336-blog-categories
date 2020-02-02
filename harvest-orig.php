@@ -61,7 +61,7 @@
       }
 
       //Print all posts on web page.
-      $sql = "SELECT * FROM posts WHERE blog_id = $blog_id";
+      $sql = "SELECT * FROM posts WHERE blog_id = $blog_id ORDER BY date DESC";
       $result = mysqli_query($db, $sql);
 
       echo "<table border='1'>";
