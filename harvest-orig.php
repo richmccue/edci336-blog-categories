@@ -61,14 +61,17 @@
       }
 
       //Print all posts on web page.
+      $blog_count = 0;
       $sql = "SELECT * FROM posts WHERE blog_id = $blog_id ORDER BY date DESC";
       $result = mysqli_query($db, $sql);
 
       echo "<table border='1'>";
-      echo "<tr><th>Blog Title</th><th>3=A 2=C 1=F</th><th>Post Date</th><th>Categories</th></tr>";
+      echo "<tr><th>#</th><th>Blog Title</th><th>3=A 2=C 1=F</th><th>Post Date</th><th>Categories</th></tr>";
       while($row = mysqli_fetch_array($result)) {
+          $blog_count += 1;
           $grade = $row['grade'];
-          echo "<tr><td><a href='" . $row['post_url'] . "' target='_blank'>" . $row['post_title'] . "</a></td>";
+          echo "<tr><th>" . $blog_count . "</th>";
+          echo "<td><a href='" . $row['post_url'] . "' target='_blank'>" . $row['post_title'] . "</a></td>";
           echo "<td><b>" . $grade . "</b> <- <a href='grade-post.php?post_id=" . $row['post_id']
             . "'>Grade</a></td>";
           echo "<td>" . $row['date'] . "</td>";
