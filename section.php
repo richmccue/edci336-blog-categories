@@ -16,7 +16,7 @@
  <h1><a href="index.php">EDCI 336</a> <? echo $section; ?></h1>
 
 <table>
-  <tr><td>#</td><td><b>URL</b></td><td><b>Inquiries</b></td></tr>
+  <tr><td>#</td><td><b>URL</b></td><td><b>Categories</b></td><td><b>Inquiries</b></td></tr>
  <?php
  //Step2
  $query = "SELECT * FROM blogs WHERE section='". $section . "'";
@@ -34,7 +34,8 @@
   echo '<tr><td>'. $blog_count .'</td><td><a href="' .
     'http://msystems.net/edci336/harvest-orig.php?id='. $row['blog_id'] . '&'
       . 'blog_url=' . $blog_url_no_http . '/feed/">' .
-      $row['blog_url'] . '</a></td><td>' . $row['comment'] .'</td></tr>';
+      $row['blog_url'] . '</a></td>' . $row['category_count'] . '<td></td><td>' .
+      $row['comment'] .'</td></tr>';
  }
  //Step 4
  mysqli_close($db);

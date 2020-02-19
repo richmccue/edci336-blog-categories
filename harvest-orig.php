@@ -64,6 +64,10 @@
       $blog_count = 0;
       $sql = "SELECT * FROM posts WHERE blog_id = $blog_id ORDER BY date DESC";
       $result = mysqli_query($db, $sql);
+      $EdTech = 0;
+      $EdTechInquiry = 0;
+      $FreeInquiry = 0;
+      $Other = 0;
 
       echo "<table border='1'>";
       echo "<tr><th>#</th><th>Blog Title</th><th>3=A 2=C 1=F</th><th>Post Date</th><th>Categories</th></tr>";
@@ -76,8 +80,22 @@
             . "'>Grade</a></td>";
           echo "<td>" . $row['date'] . "</td>";
           echo "<td><i>" .$row['categories'] . "</i></td></tr>\n";
+          if ($row['categories'] == "EdTech") {
+            $EdTech += 1;
+          } elseif ($row['categories'] == "EdTech Inquiry") {
+            $EdTechInquiry += 1;
+          } elseif ($row['categories'] == "Free Inquiry") {
+            $FreeInquiry += 1;
+          } else {
+            $Other += 1;
+          }
         }
       echo "</table>";
+
+      echo "EdTech posts: " . $EdTech . "<br>\n";
+      echo "EdTech group inquiry: " . $EdTechInquiry . "<br>\n";
+      echo "Free Inquiry: " . $FreeInquiry . "<br>\n";
+      echo "Other posts: " . $Other . "<br>\n";
 
       mysqli_close($db);
       ?>
