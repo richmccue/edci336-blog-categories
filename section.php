@@ -34,7 +34,7 @@
   echo '<tr><td>'. $blog_count .'</td><td><a href="' .
     'http://msystems.net/edci336/harvest-orig.php?id='. $row['blog_id'] . '&'
       . 'blog_url=' . $blog_url_no_http . '/feed/">' .
-      $row['blog_url'] . '</a></td>' . $row['category_count'] . '<td></td><td>' .
+      $row['blog_url'] . '</a></td><td>' . $row['category_count'] . '</td><td>' .
       $row['comment'] .'</td></tr>';
  }
  //Step 4

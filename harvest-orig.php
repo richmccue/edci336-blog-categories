@@ -92,12 +92,22 @@
         }
       echo "</table>";
 
-      echo "EdTech posts: " . $EdTech . "<br>\n";
-      echo "EdTech group inquiry: " . $EdTechInquiry . "<br>\n";
-      echo "Free Inquiry: " . $FreeInquiry . "<br>\n";
-      echo "Other posts: " . $Other . "<br>\n";
+      $categories_text .= "EdTech: " . $EdTech . " -- ";
+      $categories_text .= "EdTechInq: " . $EdTechInquiry . " -- ";
+      $categories_text .=  "FreeInq: " . $FreeInquiry . " -- ";
+      $categories_text .=  "Oth: " . $Other . " ";
+      echo $categories_text;
 
-      mysqli_close($db);
+      #Write Categories stats to blogs table
+      $sql = "UPDATE blogs SET category_count = '" . $categories_text ."' WHERE blog_id = " . $blog_id;
+
+      if (mysqli_query($db, $sql)) {
+          echo "";
+      } else {
+          echo "Error updating record: " . mysqli_error($conn);
+      }
+
+        mysqli_close($db);
       ?>
   </body>
 </html>
