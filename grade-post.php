@@ -38,6 +38,9 @@ if(isset($_POST['new']) && $_POST['new']==1) {
   mysqli_query($db, $update) or die(mysqli_error());
   echo "<p style='color:#FF0000;''>Record Updated Successfully!</p>";
   echo "<a href='harvest-orig.php?id=" . $blog_id . "'>Return to student's blog posts</a>";
+  ?>
+    <script> window.location.href = "<? echo "harvest-orig.php?id=" . $blog_id  ?>" </script>;
+  <?php
 } else {
 #If no grade was assigned, display current grade (if any).
   echo "<form name='form' method='post' action=''>";
