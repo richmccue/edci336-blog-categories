@@ -70,14 +70,14 @@
       $Other = 0;
 
       echo "<table border='1'>";
-      echo "<tr><th>#</th><th>Blog Title</th><th>3=A 2=C 1=F</th><th>Post Date</th><th>Categories</th></tr>";
+      echo "<tr><th>#</th><th>Blog Title</th><th>Note</th><th>Post Date</th><th>Categories</th></tr>";
       while($row = mysqli_fetch_array($result)) {
           $blog_count += 1;
           $grade = $row['grade'];
           echo "<tr><th>" . $blog_count . "</th>";
           echo "<td><a href='" . $row['post_url'] . "' target='_blank'>" . $row['post_title'] . "</a></td>";
           echo "<td><b>" . $grade . "</b> <- <a href='grade-post.php?post_id=" . $row['post_id']
-            . "'>Grade</a></td>";
+            . "'>Edit</a></td>";
           echo "<td>" . $row['date'] . "</td>";
           echo "<td><i>" .$row['categories'] . "</i></td></tr>\n";
           if ($row['categories'] == "EdTech") {
