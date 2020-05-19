@@ -5,7 +5,7 @@
  <head>
  </head>
  <body>
- <h1>EDCI 336 Blog Tracker 4 Instructors</h1>
+ <h1>BPT or Blog Post Tracker 4 Instructors</h1>
 
 <table>
 
