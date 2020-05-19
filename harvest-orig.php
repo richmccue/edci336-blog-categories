@@ -60,7 +60,7 @@
         }
       }
 
-      //Print all posts on web page.
+      //Print all posts on web page & counts categories for the bottom of the table
       $blog_count = 0;
       $sql = "SELECT * FROM posts WHERE blog_id = $blog_id ORDER BY date DESC";
       $result = mysqli_query($db, $sql);
