@@ -105,14 +105,11 @@
       
       # Print out all the categories and totals:
       foreach ($a_categories as $x=>$x_value) {
-         echo $x . ": " . $x_value . "<br>\n";     
+        #echo $x . ": " . $x_value . "<br>\n";  
+        $categories_text .= $x . ": " . $x_value . " -- ";
       }
 
-      $categories_text .= "EdTech: " . $EdTech . " -- ";
-      $categories_text .= "EdTechInq: " . $EdTechInquiry . " -- ";
-      $categories_text .=  "FreeInq: " . $FreeInquiry . " -- ";
-      $categories_text .=  "Oth: " . $Other . " ";
-      echo $categories_text;
+      echo "<br>" . $categories_text;
 
       #Write Categories stats to blogs table
       $sql = "UPDATE blogs SET category_count = '" . $categories_text ."' WHERE blog_id = " . $blog_id;
