@@ -70,16 +70,16 @@
       $Other = 0;
 
       echo "<table border='1'>";
-      echo "<tr><th>#</th><th>Blog Title</th><th>Note</th><th>Post Date</th><th>Categories</th></tr>";
+      echo "<tr><th>#</th><th>Blog Title</th><th>Note</th><th>Post Date</th><th>Categories</th><th>#</th></tr>\n";
       while($row = mysqli_fetch_array($result)) {
           $blog_count += 1;
           $grade = $row['grade'];
-          echo "<tr><th>" . $blog_count . "</th>";
-          echo "<td><a href='" . $row['post_url'] . "' target='_blank'>" . $row['post_title'] . "</a></td>";
-          echo "<td><b>" . $grade . "</b> <- <a href='grade-post.php?post_id=" . $row['post_id']
-            . "'>Edit</a></td>";
-          echo "<td>" . $row['date'] . "</td>";
-          echo "<td><i>" .$row['categories'] . "</i></td></tr>\n";
+          echo "<tr><th>" . $blog_count . "</th>\n";
+          echo "<td><a href='" . $row['post_url'] . "' target='_blank'>" . $row['post_title'] . "</a></td>\n";
+          echo "<td><b>" . $grade . "</b> <- <a href='grade-post.php?post_id=" . $row['post_id'] . "'>Edit</a></td>\n";
+          echo "<td>" . $row['date'] . "</td>\n";
+          echo "<td><i>" .$row['categories'] . "</i></td>\n";
+          echo "<td><a href='delete-categories.php?post_id=" . $row['post_id'] . "'>clear categories</a></td></tr>\n\n";
           if ($row['categories'] == "EdTech") {
             $EdTech += 1;
           } elseif ($row['categories'] == "EdTech Inquiry") {
