@@ -89,7 +89,7 @@
           echo "<td>" . $row['date'] . "</td>\n";
           echo "<td><i>" . $cat_temp . "</i></td>\n";
           echo "<td><a href='delete-categories.php?post_id=" . $row['post_id'] . "'>clear</a> - 
-            <a href='#'>edit</a></td></tr>\n\n";
+          a href='edit-categories.php?post_id=" . $row['post_id'] . "'>edit</a></td></tr>\n\n";
           
           if (array_key_exists($cat_temp,$a_categories)) {
             # how many in of this category type?
