@@ -68,35 +68,48 @@
       $EdTechInquiry = 0;
       $FreeInquiry = 0;
       $Other = 0;
+      
+      ##$cat_1 = "edci337-blog";
+      #$cat_2 = "edci337-app";
+      #$a_categories = array($cat_1=>"3",$cat_2=>"7");
+      #foreach ($a_categories as $x=>$x_value) {
+      #   echo "Key: " . $x . " and Value: " . $x_value . "<br>\n";     
+      #}
+      $a_categories = array();
 
       echo "<table border='1'>";
-      echo "<tr><th>#</th><th>Blog Title</th><th>Note</th><th>Post Date</th><th>Categories</th><th>#</th></tr>\n";
+      echo "<tr><th>#</th><th>Blog Title</th><th>Note</th><th>Post Date</th><th>Categories</th><th>Edit Cat...</th></tr>\n";
       while($row = mysqli_fetch_array($result)) {
           $blog_count += 1;
           $grade = $row['grade'];
+          $cat_temp = $row['categories'];
           echo "<tr><th>" . $blog_count . "</th>\n";
           echo "<td><a href='" . $row['post_url'] . "' target='_blank'>" . $row['post_title'] . "</a></td>\n";
           echo "<td><b>" . $grade . "</b> <- <a href='grade-post.php?post_id=" . $row['post_id'] . "'>Edit</a></td>\n";
           echo "<td>" . $row['date'] . "</td>\n";
-          echo "<td><i>" .$row['categories'] . "</i></td>\n";
-          echo "<td><a href='delete-categories.php?post_id=" . $row['post_id'] . "'>clear categories</a></td></tr>\n\n";
-          if ($row['categories'] == "EdTech") {
-            $EdTech += 1;
-          } elseif ($row['categories'] == "EdTech Inquiry") {
-            $EdTechInquiry += 1;
-          } elseif ($row['categories'] == "Free Inquiry") {
-            $FreeInquiry += 1;
-          } else {
-            $Other += 1;
+          echo "<td><i>" . $cat_temp . "</i></td>\n";
+          echo "<td><a href='delete-categories.php?post_id=" . $row['post_id'] . "'>clear</a> - 
+            <a href='#'>edit</a></td></tr>\n\n";
+          
+          if (array_key_exists($cat_temp,$a_categories)) {
+            # how many in of this category type?
+            $num_posts = $a_categories[$cat_temp];
+            $a_categories[$cat_temp] = $num_posts + 1;
+            # echo "Array key exists<br>\n";
+          } else { 
+            # Add new category for this blog to the array
+            $a_categories[$cat_temp]="1";
           }
         }
       echo "</table>";
+      
+      # Print out all the categories and totals:
+      foreach ($a_categories as $x=>$x_value) {
+        #echo $x . ": " . $x_value . "<br>\n";  
+        $categories_text .= $x . ": " . $x_value . " -- ";
+      }
 
-      $categories_text .= "EdTech: " . $EdTech . " -- ";
-      $categories_text .= "EdTechInq: " . $EdTechInquiry . " -- ";
-      $categories_text .=  "FreeInq: " . $FreeInquiry . " -- ";
-      $categories_text .=  "Oth: " . $Other . " ";
-      echo $categories_text;
+      echo "<br>" . $categories_text;
 
       #Write Categories stats to blogs table
       $sql = "UPDATE blogs SET category_count = '" . $categories_text ."' WHERE blog_id = " . $blog_id;
