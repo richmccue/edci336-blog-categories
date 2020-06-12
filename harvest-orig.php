@@ -106,7 +106,7 @@
       # Print out all the categories and totals:
       foreach ($a_categories as $x=>$x_value) {
         #echo $x . ": " . $x_value . "<br>\n";  
-        $categories_text .= $x . ": " . $x_value . " -- ";
+        $categories_text .= "<b>" . $x . ":</b> " . $x_value . " -- ";
       }
 
       echo "<br>" . $categories_text;
