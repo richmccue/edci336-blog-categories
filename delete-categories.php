@@ -15,8 +15,8 @@
 # $query = "SELECT * FROM posts WHERE post_id =" . $post_id;
 # "UPDATE MyGuests SET lastname='Doe' WHERE id=2";
 
-$query = "UPDATE posts SET categories = '' WHERE post_id =" . $post_id;
-mysqli_query($db, $query) or die(mysqli_error());
+$query = "UPDATE posts SET categories = 'other' WHERE post_id =" . $post_id;
+mysqli_query($db, $query) or die(mysqli_error($db));
 $result = mysqli_query($db, $query);
 
 mysqli_close($db);

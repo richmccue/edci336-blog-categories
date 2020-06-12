@@ -78,7 +78,7 @@
       $a_categories = array();
 
       echo "<table border='1'>";
-      echo "<tr><th>#</th><th>Blog Title</th><th>Note</th><th>Post Date</th><th>Categories</th><th>#</th></tr>\n";
+      echo "<tr><th>#</th><th>Blog Title</th><th>Note</th><th>Post Date</th><th>Categories</th><th>Edit Cat...</th></tr>\n";
       while($row = mysqli_fetch_array($result)) {
           $blog_count += 1;
           $grade = $row['grade'];
@@ -88,25 +88,24 @@
           echo "<td><b>" . $grade . "</b> <- <a href='grade-post.php?post_id=" . $row['post_id'] . "'>Edit</a></td>\n";
           echo "<td>" . $row['date'] . "</td>\n";
           echo "<td><i>" . $cat_temp . "</i></td>\n";
-          echo "<td><a href='delete-categories.php?post_id=" . $row['post_id'] . "'>clear categories</a></td></tr>\n\n";
+          echo "<td><a href='delete-categories.php?post_id=" . $row['post_id'] . "'>clear</a> - 
+            <a href='#'>edit</a></td></tr>\n\n";
           
-          if (array_key_exists($a_categories,$cat_temp)) {
+          if (array_key_exists($cat_temp,$a_categories)) {
             # how many in of this category type?
             $num_posts = $a_categories[$cat_temp];
             $a_categories[$cat_temp] = $num_posts + 1;
-            echo $a_categories[$cat_temp] . "\n";
+            # echo "Array key exists<br>\n";
           } else { 
             # Add new category for this blog to the array
-            #echo "Add it to the array!"; 
             $a_categories[$cat_temp]="1";
-            echo $a_categories[$cat_temp] . "\n";
           }
         }
       echo "</table>";
       
       # Print out all the categories and totals:
       foreach ($a_categories as $x=>$x_value) {
-         echo "Key: " . $x . " and Value: " . $x_value . "<br>\n";     
+         echo $x . ": " . $x_value . "<br>\n";     
       }
 
       $categories_text .= "EdTech: " . $EdTech . " -- ";
