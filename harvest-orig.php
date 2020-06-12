@@ -68,6 +68,7 @@
       $EdTechInquiry = 0;
       $FreeInquiry = 0;
       $Other = 0;
+      $post_categories = array();
 
       echo "<table border='1'>";
       echo "<tr><th>#</th><th>Blog Title</th><th>Note</th><th>Post Date</th><th>Categories</th><th>#</th></tr>\n";
@@ -80,6 +81,13 @@
           echo "<td>" . $row['date'] . "</td>\n";
           echo "<td><i>" .$row['categories'] . "</i></td>\n";
           echo "<td><a href='delete-categories.php?post_id=" . $row['post_id'] . "'>clear categories</a></td></tr>\n\n";
+          
+          if (array_key_exists($post_categories,$row['categories'])) {
+            echo "Already in Array!"; 
+          } else { 
+            echo "Add it to the array!"; 
+          }
+          /*
           if ($row['categories'] == "EdTech") {
             $EdTech += 1;
           } elseif ($row['categories'] == "EdTech Inquiry") {
@@ -89,6 +97,7 @@
           } else {
             $Other += 1;
           }
+          */
         }
       echo "</table>";
 
