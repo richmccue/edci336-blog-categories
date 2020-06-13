@@ -103,7 +103,9 @@
         }
       echo "</table>";
       
-      # Print out all the categories and totals:
+      # Sort and then Print out all the categories and totals:
+      ksort($a_categories);
+
       foreach ($a_categories as $x=>$x_value) {
         #echo $x . ": " . $x_value . "<br>\n";  
         $categories_text .= "<b>" . $x . ":</b> " . $x_value . " -- ";
