@@ -1,5 +1,12 @@
 <?php
   require('db.php');
+
+  if(isset($_GET["section"])){
+    $section = $_GET["section"];
+    setcookie("section",$section);
+  } else {
+    $section = $_COOKIE["section"];
+  }
 ?>
 <html>
  <head>
