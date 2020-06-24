@@ -83,22 +83,24 @@
           $blog_count += 1;
           $grade = $row['grade'];
           $cat_temp = $row['categories'];
-          echo "<tr><th>" . $blog_count . "</th>\n";
-          echo "<td><a href='" . $row['post_url'] . "' target='_blank'>" . $row['post_title'] . "</a></td>\n";
-          echo "<td><b>" . $grade . "</b> <- <a href='grade-post.php?post_id=" . $row['post_id'] . "'>Edit</a></td>\n";
-          echo "<td>" . $row['date'] . "</td>\n";
-          echo "<td><i>" . $cat_temp . "</i></td>\n";
-          echo "<td><a href='delete-categories.php?post_id=" . $row['post_id'] . "'>clear</a> - 
-          <a href='edit-categories.php?post_id=" . $row['post_id'] . "'>edit</a></td></tr>\n\n";
-          
-          if (array_key_exists($cat_temp,$a_categories)) {
-            # how many in of this category type?
-            $num_posts = $a_categories[$cat_temp];
-            $a_categories[$cat_temp] = $num_posts + 1;
-            # echo "Array key exists<br>\n";
-          } else { 
-            # Add new category for this blog to the array
-            $a_categories[$cat_temp]="1";
+          if ($cat_temp != 'other') {
+            echo "<tr><th>" . $blog_count . "</th>\n";
+            echo "<td><a href='" . $row['post_url'] . "' target='_blank'>" . $row['post_title'] . "</a></td>\n";
+            echo "<td><b>" . $grade . "</b> <- <a href='grade-post.php?post_id=" . $row['post_id'] . "'>Edit</a></td>\n";
+            echo "<td>" . $row['date'] . "</td>\n";
+            echo "<td><i>" . $cat_temp . "</i></td>\n";
+            echo "<td><a href='delete-categories.php?post_id=" . $row['post_id'] . "'>clear</a> - 
+            <a href='edit-categories.php?post_id=" . $row['post_id'] . "'>edit</a></td></tr>\n\n";
+            
+            if (array_key_exists($cat_temp,$a_categories)) {
+              # how many in of this category type?
+              $num_posts = $a_categories[$cat_temp];
+              $a_categories[$cat_temp] = $num_posts + 1;
+              # echo "Array key exists<br>\n";
+            } else { 
+              # Add new category for this blog to the array
+              $a_categories[$cat_temp]="1";
+            }
           }
         }
       echo "</table>";
