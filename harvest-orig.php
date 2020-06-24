@@ -79,11 +79,11 @@
 
       echo "<table border='1'>";
       echo "<tr><th>#</th><th>Blog Title</th><th>Note</th><th>Post Date</th><th>Categories</th><th>Edit Cat...</th></tr>\n";
-      #while($row = mysqli_fetch_array($result)) {
+      while($row = mysqli_fetch_array($result)) {
           $blog_count += 1;
           $grade = $row['grade'];
           $cat_temp = $row['categories'];
-          #if ($cat_temp != 'other') {
+          if ($cat_temp != 'other') {
             echo "<tr><th>" . $blog_count . "</th>\n";
             echo "<td><a href='" . $row['post_url'] . "' target='_blank'>" . $row['post_title'] . "</a></td>\n";
             echo "<td><b>" . $grade . "</b> <- <a href='grade-post.php?post_id=" . $row['post_id'] . "'>Edit</a></td>\n";
@@ -101,7 +101,7 @@
               # Add new category for this blog to the array
               $a_categories[$cat_temp]="1";
             }
-          #}
+          }
         }
       echo "</table>";
       
